@@ -21,10 +21,10 @@ class SensorData:
     
     def update_data(self):
         # Simulate real sensor changes
-        self.data['soil_moisture'] = max(20, self.data['soil_moisture'] + random.uniform(-3, 1.5))
-        self.data['temperature'] += random.uniform(-1, 1.5)
-        self.data['humidity'] += random.uniform(-2, 3)
-        self.data['rain_forecast'] = random.randint(0, 40)
+        self.data['soil_moisture'] = max(20, self.data['soil_moisture'] + random.uniform(10, 60))
+        self.data['temperature'] += random.uniform(15, 45)
+        self.data['humidity'] += random.uniform(30, 90)
+        self.data['rain_forecast'] = random.randint(0, 100)
         
         # Add to history
         self.history.append({
