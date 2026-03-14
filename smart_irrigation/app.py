@@ -18,25 +18,31 @@ class SensorData:
             'last_watered': None
         }
         self.history = []
-    
-def update_data(self):
-    # Generate realistic sensor values
-    self.data['soil_moisture'] = round(random.uniform(20, 60), 1)
-    self.data['temperature'] = round(random.uniform(20, 38), 1)
-    self.data['humidity'] = round(random.uniform(40, 90), 1)
-    self.data['rain_forecast'] = random.randint(0, 100)
 
-    # Add to history
-    self.history.append({
-        'time': datetime.now().strftime('%H:%M:%S'),
-        'moisture': self.data['soil_moisture'],
-        'temp': self.data['temperature']
-    })
+    def update_data(self):
+        # Generate realistic sensor values
+        self.data['soil_moisture'] = round(random.uniform(20, 60), 1)
+        self.data['temperature'] = round(random.uniform(20, 38), 1)
+        self.data['humidity'] = round(random.uniform(40, 90), 1)
+        self.data['rain_forecast'] = random.randint(0, 100)
 
-    if len(self.history) > 30:
-        self.history.pop(0)
+        # Add to history
+        self.history.append({
+            'time': datetime.now().strftime('%H:%M:%S'),
+            'moisture': self.data['soil_moisture'],
+            'temp': self.data['temperature']
+        })
 
-    return self.data.copy()
+        if len(self.history) > 30:
+            self.history.pop(0)
+
+        return self.data.copy()
+
+    def toggle_pump(self, status):
+        self.data['pump_status'] = status
+        if status:
+            self.data['last_watered'] = datetime.now().strftime('%H:%M:%S')
+        return self.data.copy()
     
     def toggle_pump(self, status):
         self.data['pump_status'] = status
